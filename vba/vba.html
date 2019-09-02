@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, intial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scale=0"/>
+		<title>VBA记录</title>
+		<style>
+			.class___command {
+				background-color : black;
+				color : yellow;
+				padding : 10px;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<h2>Workbook_Open事件</h2>
+			<p>打开工作簿时，发生此事件</p>
+			<p>
+				例如:
+				<br/>
+				每次打开工作簿时，本示例都最大化 Microsoft Excel 窗口。
+				<div class="class___command">
+					Private Sub Workbook_Open()<br/>
+						<span class="class___tab">&#9;</span>Application.WindowState = xlMaximized<br/>
+					End Sub
+ 				</div>
+		</section>
+	</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>VBA</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___command {
+				background-color : black;
+				color : yellow;
+				padding : 10px;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
+			}
+		</style>
+		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				//console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				//console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				//console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>Excel VBA</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h2>Workbook_Open事件</h2>
+				<p>打开工作簿时，发生此事件</p>
+				<p>
+					例如:
+					<br/>
+					每次打开工作簿时，本示例都最大化 Microsoft Excel 窗口。
+					<div class="class___command">
+						Private Sub Workbook_Open()<br/>
+							<span class="class___tab">&#9;</span>Application.WindowState = xlMaximized<br/>
+						End Sub
+					</div>
+				</p>
+			</section>
+			<section>
+				<h3>获取相应的sheet</h3>
+				<p>
+					<span class="shell_instruction">sheets(index)</span>
+					<br/>
+					index : integer value, sheet index start from 1, for example sheet1 is sheets(1), 整形, sheet从1开始, 例如 sheets(1)
+				</p>
+				<p>
+					<span class="shell_instruction">sheets("sheet_name")</span>
+					<br/>
+					sheet_name : string value, sheet's name for sheet name is 'mytable' is sheets("mytable"), 字符串, sheet的名字例如名字为'mytable'的sheet是sheets("mytable")
+				</p>
+				<h3>获取一定范围内的单元格</h3>
+				<p>
+					<span class="shell_instruction">sheets(index).cells(row_index, column_index)</span>
+					<br/>
+					row_index : integer value, line number, from 1 start, for example "A6" cell this value is 6, 整形, 行号, 从1开始, 例如 "A6" 则此值为6
+					<br/>
+					column_index : integer value, column number, from 1 start, for example "A6" cell this value is 1, 整形, 列号, 从1开始, 例如 "A6" 则此值为1
+				</p>
+				<p>
+					<span class="shell_instruction">sheets("sheet_name").range("E3:F6")</span>
+					<br/>
+					E3:F6 : select from E3 to F6, 选择从 E3 到 F6
+				</p>
+				<h3>读取单元格的值</h3>
+				<p>
+					<span class="shell_instruction">v = sheets(index).cells(2, 3).value</span>
+					<br/>
+					读取C2单元格中的值到变量v中
+				</p>
+				<h3>设置单元格的值</h3>
+				<p>
+					<span class="shell_instruction">sheets(index).cells(2, 3).value = v</span>
+					<br/>
+					设置C2单元格中的值为变量v中的值
+				</p>
+				<h3>清空sheet</h3>
+				<p>
+					<span class="shell_instruction">sheets(index).cells.clear</span>
+					<br/>
+				</p>
+				<h3>清空指定范围单元格</h3>
+				<p>
+					<span class="shell_instruction">sheets("sheet_name").range("E3:F6").cells.clear</span>
+					<br/>
+					clear from E3 to F6, 清空从 E3 到 F6
+				</p>
+			</section>
+			<section>
+				<h3>选中相应的sheet</h3>
+				<p>
+					<span class="shell_instruction">sheets(index).activate</span>
+				</p>
+				<h3>选中相应的单元格, 选中sheet1的C2单元格</h3>
+				<div class="class___code">
+					sheets(1).activate
+					<br/>
+					Range("C2").Select
+				</div>
+				<h3>设置选中的单元格的值, 设置sheet1的C2单元格的值为123</h3>
+				<div class="class___code">
+					sheets(1).activate
+					<br/>
+					Range("C2").Select
+					<br/>
+					ActiveCell.FormulaR1C1 = 123
+				</div>
+				<h3>读取选中的单元格的值, 读取sheet1的C2单元格的值到变量v</h3>
+				<div class="class___code">
+					sheets(1).activate
+					<br/>
+					Range("C2").Select
+					<br/>
+					v = ActiveCell.FormulaR1C1
+				</div>
+			</section>
+		</article>
+	</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>visual_basic_script</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___command {
+				background-color : black;
+				color : yellow;
+				padding : 10px;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
+			}
+		</style>
+		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				//console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				//console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				//console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>Visual_Basic_Script</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h2>Win7无法运行vbs文件</h2>
+				<p>
+					用户在进行Win7系统重装以后，系统一般都会自动激活，如果系统没有被激活，那么就可能会导致一些应用无法运行
+					<br/>
+					查看系统是否被激活，在运行
+					<p class="class___command">
+						slmgr.vbs -dlv
+					</p>
+					出现无法查看的情况。
+					<br/>
+					1、按“Win+R”打开“运行”窗口，输入“Regedit”命令后按回车，打开注册表; 
+					<br/>
+					2、检查HKEY_CLASSES_ROOT\.vbs的默认值，如果是VBSFile; 
+					<br/>
+					3、检查注册表
+					<br/>
+					HKEY_CLASSES_ROOT\VBSFile\Shell\Open\Command
+					<br/>
+					默认值，应该是
+					<br/>
+					“%SystemRoot%\System32\WScript.exe” “%1” %*
+					<br/>
+					，那么请手动更改 .vbs 文件的打开方式，将其改为
+					<br/>
+					C:\windows\System32\WScript.exe
+					<br/>
+					4、修改完后，在运行里输入：slmgr.vbs –dlv 或者 slmgr.vbs –dli 查看激活情况，如果未激活可使用激活软件进行激活。
+				</p>
+			</section>
+		</article>
+	</body>
+</html>

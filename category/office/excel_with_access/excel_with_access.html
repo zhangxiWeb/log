@@ -15,14 +15,24 @@
 			}
 		</style>
 		<style>
+			@media (max-width: 600px) {
+				#id___article {
+					--title_height : 50px;
+					--menu_width : 50px;
+				}
+			}
+			@media (min-width: 600px) {
+				#id___article {
+					--title_height : 50px;
+					--menu_width : 200px;
+				}
+			}
 			#id___article {
-				--title_height : 100px;
-				--menu_width : 200px;
 				height : 100%;
 				width : 100%;
 				display : grid;
-				grid-template-columns: var(--menu_width, 200px) calc(100% - var(--menu_width, 200px));
-  				grid-template-rows: var(--title_height, 100px) calc(100% - var(--title_height, 100px));
+				grid-template-columns: var(--menu_width) calc(100% - var(--menu_width));
+  				grid-template-rows: var(--title_height) calc(100% - var(--title_height));
 				grid-row-gap: 0;
 				grid-column-gap: 0;
 				grid-template-areas: "header header"
@@ -43,23 +53,39 @@
 				font-size : 24px;
 				color : red;
 				display : inline-block;
-				line-height : var(--title_height, 100px);
+				line-height : var(--title_height);
 				text-align : center;
 				vertical-align : middle;
 			}
-			#id___div___show_menu {
-				position : absolute;
-				top : 0;
-				left : 0;
-				width : var(--menu_width, 200px);
-				height : var(--title_height, 100px);
-				cursor : pointer;
-				background-image :radial-gradient(#f5f3f3, #fde6f8);
-				text-align : center;
-				vertical-align: middle;
-				line-height: var(--title_height, 100px);
-				color :hotpink;
-				font-size : 0;
+			@media (max-width: 600px) {
+				#id___div___show_menu {
+					position : absolute;
+					top : 0;
+					left : 0;
+					width : var(--menu_width);
+					height : var(--title_height);
+					cursor : pointer;
+					background-image :radial-gradient(#f5f3f3, #fde6f8);
+					text-align : center;
+					line-height: var(--title_height);
+					color :hotpink;
+					font-size : 0;
+				}
+			}
+			@media (min-width: 600px) {
+				#id___div___show_menu {
+					position : absolute;
+					top : 0;
+					left : 0;
+					width : var(--menu_width);
+					height : var(--title_height);
+					cursor : pointer;
+					background-image :radial-gradient(#f5f3f3, #fde6f8);
+					text-align : center;
+					line-height: var(--title_height);
+					color :hotpink;
+					font-size : 0;
+				}
 			}
 			#id___div___show_menu:hover {
 				font-size : 18px;

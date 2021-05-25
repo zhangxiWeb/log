@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>Excel with Access</title>
+		<style>
+			html, body {
+				width : 100%;
+				height : 100%;
+				margin : 0;
+				padding : 0;
+				border : 0;
+				overflow : hidden;
+			}
+		</style>
+		<style>
+			#id___article {
+				--title_height : 100px;
+				--menu_width : 200px;
+				height : 100%;
+				width : 100%;
+				display : grid;
+				grid-template-columns: var(--menu_width, 200px) calc(100% - var(--menu_width, 200px));
+  				grid-template-rows: var(--title_height, 100px) calc(100% - var(--title_height, 100px));
+				grid-row-gap: 0;
+				grid-column-gap: 0;
+				grid-template-areas: "header header"
+									"menu main";
+			}
+			#id___header {
+				grid-column-start : 1;
+				grid-column-end : 3;
+				grid-row-start : 1;
+				grid-row-end : 2;
+				background-image :radial-gradient(#f5f3f3, #d1d4f5);
+			}
+			.class___title {
+				margin : 0;
+				padding : 0;
+				box-sizing : border-box;
+				width : 100%;
+				font-size : 24px;
+				color : red;
+				display : inline-block;
+				line-height : var(--title_height, 100px);
+				text-align : center;
+				vertical-align : middle;
+			}
+			#id___div___show_menu {
+				position : absolute;
+				top : 0;
+				left : 0;
+				width : var(--menu_width, 200px);
+				height : var(--title_height, 100px);
+				cursor : pointer;
+				background-image :radial-gradient(#f5f3f3, #fde6f8);
+				text-align : center;
+				vertical-align: middle;
+				line-height: var(--title_height, 100px);
+				color :hotpink;
+				font-size : 0;
+			}
+			#id___div___show_menu:hover {
+				font-size : 18px;
+			}
+
+			#id___section_menu {
+				background-image :radial-gradient(#f5f3f3, #d4fad9);
+			}
+			#id___section_menu > div {
+				cursor : pointer;
+				color :rgb(12, 93, 243);
+				margin-top : 10px;
+				margin-bottom : 10px;
+				text-align : center;
+			}
+			#id___section_menu > div:hover {
+				color : gold;
+			}
+
+			#id___section_content {
+				overflow : auto;
+			}
+			#id___section_content > div {
+				display : none;
+			}
+		</style>
+		<script>
+			window.body_load = function(event) {
+				const whole = document.getElementById('id___article');
+				const menu_div = document.getElementById('id___section_menu');
+				const content_div = document.getElementById('id___section_content');
+				const show_menu_button = document.getElementById('id___div___show_menu');
+				let menu_visible = true;
+				show_menu_button.addEventListener('click', (e) => {
+					let value = menu_visible ? '0 100%' : 'var(--menu_width, 200px) calc(100% - var(--menu_width, 200px))';
+					menu_div.style.visibility = menu_visible ? 'hidden' : 'visible';
+					whole.style.setProperty('grid-template-columns', value);
+					menu_visible = !menu_visible;
+				});
+
+
+				{
+					const a = menu_div.children;
+					const ca = content_div.children;
+					let m_style = a[0].style;
+					let style = ca[0].style;
+					for (let i = 0, l = a.length; i < l; i++) {
+						if (ca[i]) {
+							ca[i].style.display = 'none';
+						}
+						const index = i;
+						a[i].addEventListener('click', (e) => {
+							if (ca[index]) {
+								m_style.color = 'rgb(12, 93, 243)';
+								style.display = 'none';
+								m_style = a[index].style;
+								m_style.color = 'red';
+								style = ca[index].style;
+								style.display = 'block';
+							}
+						});
+					}
+					a[0].click();
+				}
+			}
+		</script>
+	</head>
+	<body onload="body_load(event);">
+		<article id="id___article">
+			<header id="id___header">
+				<h2 class="class___title">Excel 与 Access</h2>
+				<div id="id___div___show_menu">显隐目录</div>
+			</header>
+			<section id="id___section_menu">
+				<div data-section="">简介</div>
+				<div data-section="">导入表</div>
+				<div data-section="">查重</div>
+				<div data-section="">差集</div>
+				<div data-section="">表关联</div>
+				<div data-section="">SQL实现表关联</div>
+				<div data-section="">SQL等值查询</div>
+				<div data-section="">SQL比较查询</div>
+				<div data-section="">SQL任意长度字符模糊查询</div>
+				<div data-section="">SQL定长字符模糊查询</div>
+				<div data-section="">SQL指定位数数字查询</div>
+				<div data-section="">SQL逻辑且条件</div>
+				<div data-section="">SQL逻辑或条件</div>
+				<div data-section="">SQL逻辑条件组合使用</div>
+				<div data-section="">SQL排序</div>
+				<div data-section="">SQL查询的去重查询</div>
+			</section>
+			<section id="id___section_content">
+				<div>
+					<h3>简介</h3>
+					<div></div>
+				</div>
+				<div>
+					<h3>导入表</h3>
+					<div>
+						<img src="./refs/0001/imgs/student_table_picture.png"/>
+						<img src="./refs/0001/imgs/score_table_picture.png"/>
+					</div>
+				</div>
+				<div>
+					<h3>查重</h3>
+					<div></div>
+				</div>
+				<div>
+					<h3>差集</h3>
+					<div>
+						数据在另一个表中不存在
+					</div>
+				</div>
+				<div>
+					<h3>表关联</h3>
+					<div>
+						将多个表符合条件的记录关联显示
+					</div>
+				</div>
+				<div>
+					<h3>SQL实现表关联</h3>
+					<div></div>
+				</div>
+				<div>
+					<h3>SQL等值查询</h3>
+					<div></div>
+				</div>
+				<div>
+					<h3>SQL比较查询</h3>
+					<div></div>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>

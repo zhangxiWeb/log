@@ -101,6 +101,9 @@
 					font-size : 20px;
 				}
 			}
+			#id___section_menu {
+				overflow : auto;
+			}
 			#id___section_menu > div {
 				cursor : pointer;
 				color :rgb(12, 93, 243);
@@ -114,10 +117,23 @@
 
 			#id___section_content {
 				overflow : auto;
-				font-size : 20px;
+				--content_font_size : 20px;
+				font-size : var(--content_font_size);
 			}
 			#id___section_content > div {
 				display : none;
+			}
+			#id___section_content > div > h3 {
+				font-size : 24px;
+				text-align : center;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 2em;
+				line-height : var(--content_font_size);
+				font-size : var(--content_font_size);
+				vertical-align : bottom;
+				white-space : pre-wrap;
 			}
 		</style>
 		<script>
@@ -188,7 +204,9 @@
 			<section id="id___section_content">
 				<div>
 					<h3>简介</h3>
-					<div></div>
+					<div>
+						<span class="class___tab"></span>
+					</div>
 				</div>
 				<div>
 					<h3>导入表</h3>

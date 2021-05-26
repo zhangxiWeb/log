@@ -67,9 +67,16 @@
 					cursor : pointer;
 					background-image :radial-gradient(#f5f3f3, #fde6f8);
 					text-align : center;
-					line-height: var(--title_height);
+					line-height: calc(var(--title_height) / 2);
 					color :hotpink;
-					font-size : 0;
+					font-size : 18px;
+				}
+				#id___div___show_menu:hover {
+					font-size : 18px;
+				}
+				#id___section_menu {
+					background-image :radial-gradient(#f5f3f3, #d4fad9);
+					font-size : 16px;
 				}
 			}
 			@media (min-width: 600px) {
@@ -86,13 +93,13 @@
 					color :hotpink;
 					font-size : 0;
 				}
-			}
-			#id___div___show_menu:hover {
-				font-size : 18px;
-			}
-
-			#id___section_menu {
-				background-image :radial-gradient(#f5f3f3, #d4fad9);
+				#id___div___show_menu:hover {
+					font-size : 18px;
+				}
+				#id___section_menu {
+					background-image :radial-gradient(#f5f3f3, #d4fad9);
+					font-size : 20px;
+				}
 			}
 			#id___section_menu > div {
 				cursor : pointer;
@@ -107,6 +114,7 @@
 
 			#id___section_content {
 				overflow : auto;
+				font-size : 20px;
 			}
 			#id___section_content > div {
 				display : none;

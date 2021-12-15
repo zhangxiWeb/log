@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>Wrod</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___command {
+				background-color : black;
+				color : yellow;
+				padding : 10px;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+		</style>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>Word</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h2>很抱歉，此功能看似已中断，并需要修复。请使用Windows控制面板中的“程序和功能”选项修复Mircosoft Office。</h2>
+				<div>
+					<img src="./refs/need_repair/imgs/need_repair.jpg"/>
+					<br/>
+					win+r打开运行窗口，输入regedit打开注册表
+					<br/>
+					找到[HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Word\Options]
+					<br/>
+					在右侧新建一个DWORD(32位)值，名称为NoReReg，值为1
+					<br/>
+					关闭注册表，重新打开word即可
+				</div>
+			</section>
+			<section>
+				<h2>行号</h2>
+				<div>
+					在每页的左侧可以设置显示行号
+					<br/>
+					例如5行一显示如下图:
+					<br/>
+					<img src="./refs/line_number/imgs/step_value_5.jpg"/>
+					<br/>
+					又例如1行一显示如下图:
+					<br/>
+					<img src="./refs/line_number/imgs/step_value_1.jpg"/>
+					<br/>
+					设置步骤如下:
+					<br/>
+					点击上面的"布局"选项卡
+					<br/>
+					再点击页面设置栏的右下角，如下图:
+					<br/>
+					<img src="./refs/line_number/imgs/page_setting_button.jpg"/>
+					<br/>
+					弹出页面设置框，点击"行号"按钮，如下图:
+					<br/>
+					<img src="./refs/line_number/imgs/line_number_button.jpg"/>
+					<br/>
+					弹出行号框，如下图:
+					<br/>
+					<img src="./refs/line_number/imgs/line_number_panel.jpg"/>
+					<br/>
+					进行相应的设置即可，要想显示行号就勾选"添加行号"，不想显示就去掉勾选"添加行号"。
+				</div>
+			</section>
+		</article>
+	</body>
+</html>

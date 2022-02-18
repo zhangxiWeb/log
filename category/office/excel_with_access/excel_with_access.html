@@ -145,6 +145,19 @@
 				color : rgb(12, 93, 243);
 				cursor : pointer;
 			}
+			.class___table {
+				text-align : center;
+			}
+			.class___table > table {
+				display : inline-block;
+			}
+			table {
+				border-collapse : collapse;
+				text-align : center;
+			}
+			th, td {
+				border : 1px solid gray;
+			}
 		</style>
 		<script>
 			window.body_load = function(event) {
@@ -229,24 +242,369 @@
 					<h3>简介</h3>
 					<div>
 						<span class="class___tab"></span>
-						记录Excel的操作教程和利用Office带的Access辅助Excel的操作
+						记录Excel的操作教程和利用Office带的Access辅助Excel的操作。
+						<br/>
+						有些功能在Excel操作比较麻烦可以借助Access更简单更快速的实现这些功能，此文档的内容是挑选过的，挑选内容为access的知识中，基本、不难、好记能满足大部分功能需求的知识。
 					</div>
 				</div>
 				<div>
 					<h3>导入表</h3>
 					<div>
-						<img src="./refs/0001/imgs/student_table_picture.png"/>
-						<img src="./refs/0001/imgs/score_table_picture.png"/>
+						<span>为了举例说明，在此我们在F盘下建立一个叫"access练习"的文件夹，在此建立1个excel文件，命名为"原.xlsx"，在其中建立2个表，如下图:</span>
+						<br/>
+						<div class="class___image">
+							<img src="./refs/0002/imgs/student_table_picture.png"/>
+							<div>图2_1</div>
+						</div>
+						<div class="class___image">
+							<img src="./refs/0002/imgs/score_table_picture.png"/>
+							<div>图2_2</div>
+						</div>
+						<br/><br/><br/>
+						为了便于练习，数据表的数据如下:
+						<br/><br/>
+						<div class="class___table">
+							<table>
+								<thead>
+									<tr>
+										<th>学号</th>
+										<th>姓名</th>
+										<th>性别</th>
+										<th>备注</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>姬旦一</td>
+										<td>男</td>
+										<td>a</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>王旦二</td>
+										<td>女</td>
+										<td>b</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>王旦三</td>
+										<td>男</td>
+										<td>c</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>王旦四</td>
+										<td>女</td>
+										<td>d</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>姬旦五</td>
+										<td>男</td>
+										<td>5</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>姬旦六</td>
+										<td>女</td>
+										<td>f</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>赵旦七</td>
+										<td>男</td>
+										<td>g</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>诸葛老八</td>
+										<td>女</td>
+										<td>8</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>姬旦九</td>
+										<td>男</td>
+										<td>9</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>姬旦十</td>
+										<td>女</td>
+										<td>10</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="class___table">
+							<table>
+								<thead>
+									<tr>
+										<th>学号</th>
+										<th>考试批次</th>
+										<th>语文</th>
+										<th>数学</th>
+										<th>物理</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>5</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>1</td>
+										<td>100</td>
+										<td>40</td>
+										<td>10</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>2</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>3</td>
+										<td>70</td>
+										<td>70</td>
+										<td>70</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>6</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>1</td>
+										<td>20</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>5</td>
+										<td>80</td>
+										<td>80</td>
+										<td>90</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<br/><br/>
+						第1步:现打开Access新建一空白数据库文件，选择"空白桌面数据库"如图:
+						<div class="class___image">
+							<img src="./refs/0002/imgs/empty_access_file.png"/>
+							<div>图2_3</div>
+						</div>
+						第2步:弹出一对话框，点击右侧的那个文件夹图标，将access文件存放的路径放在F盘的"access练习"文件夹下，并取名叫"查询库.accdb"，如图:
+						<div class="class___image">
+							<img src="./refs/0002/imgs/create_empty_access_file.png"/>
+							<div>图2_4</div>
+						</div>
+						第3步:点击"创建"，我们创建里一个空的access文件，如图:
+						<div class="class___image">
+							<img src="./refs/0002/imgs/empty_access_db.png"/>
+							<div>图2_5</div>
+						</div>
+						第4步:接着开始导入数据，点击上部的"外部数据"标签按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0002/imgs/excel_import_button.png"/>
+							<div>图2_6</div>
+						</div>
+						第5步:点击Excel图标，弹出窗口后右侧的"选择(R)..."按钮选择"F://access练习//原.xlsx"文件，在下面选择"通过创建链接表来链接到数据源"，如图:
+						<div class="class___image">
+							<img src="./refs/0002/imgs/import_from_file.png"/>
+							<div>图2_6</div>
+						</div>
+						第6步:点击"确定"按钮，此时默认选择的是"学员表"，点击"下一步"按钮，在新的弹窗中单击选中"第一行包含列标题(I)"，再次点击"下一步"按钮，又换了一个新弹窗，此时可以设置导入的表的名称，默认是"学员表"所以不用改了直接点击"完成"按钮。
+						<br/>
+						第7步:按照上面的第4步、第5步、第6步将"成绩表"导入。
+						<br/>
+						第8步:右键单击右边的"表1"，点击"关闭"按钮，关闭表1，此时左侧的"表1"也没了(此步骤非必须，只是为了减少界面的干扰)。
+						<br/>
+						至此数据导入已经完成，后续的功能说明均基于此示例表述。
 					</div>
 				</div>
 				<div>
 					<h3>查重</h3>
-					<div></div>
+					<div>
+						查重，其实有许多不同的查重的情况，在此只说明一种access内置的查重功能。
+						<br/>
+						指定某几个字段(字段，例如"学号"这列，更近一步讲，前面的"导入表"小结中的学生表里的第一行即第一条记录，该条记录里的1便是该条记录的"学号"字段的值)。
+						<br/>
+						例如查询"成绩表"里谁的"考试批次"重复了，即"学号"与"考试批次"这两个字段的值同时重复了，现举例说明:
+						<br/>
+						第1步:点击上部的"创建"标签按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/create_view_button.png"/>
+							<div>图3_1</div>
+						</div>
+						第2步:在弹出的窗口中选择"查找重复项查询向导"，点击"确定"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/create_view_duplicate_panel.png"/>
+							<div>图3_2</div>
+						</div>
+						第3步:在此可以选择要查重的表，我们要对"成绩表"查重，因为默认选的就是该表所以直接选择"下一步"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/create_view_find_duplicate_select_table.png"/>
+							<div>图3_3</div>
+						</div>
+						第4步:在此选择对那些字段的值进行查重，我们要找出"学号"与"考试批次"的值同时重复的记录，我们将这两个字段放到右侧，然后点击"下一步"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/create_view_find_duplicate_select_field.png"/>
+							<div>图3_4</div>
+						</div>
+						第5步:此时可以选择除了查重的字段之外还要显示的字段，我们可以都选上，然后选择"下一步"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/create_view_find_duplicate_select_other_field.png"/>
+							<div>图3_5</div>
+						</div>
+						第6步:此时可以指定查询结果的名称，我们修改该名称为"成绩表学号及考试批次同时重复项"然后选择"完成"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/create_view_find_duplicate_set_name.png"/>
+							<div>图3_6</div>
+						</div>
+						此时显示查重结果，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/view_duplicate_data.png"/>
+							<div>图3_7</div>
+						</div>
+						该查询结果在access中称为查询，查询也叫视图，视图不是表，视图是对表或视图在指定条件下的查询结果。
+						<br/>
+						上面的第3步图3_3中有一个标有视图的框，有3个选项：表、查询、两者，表就是原本的数据表本例中为"学员表"和"成绩表"，我们本例中创建的就是一个查询也叫视图，当我们再创建新的视图时可以将该视图作为数据源进行查询操作。
+						<br/>
+						例如本例中如果修改了"成绩表"中的数据，当我们再次打开查看查询结果时，结果会自动更改，不用重复上述操作，但操作时有些步骤要注意现再说明一下：
+						<br/>
+						第7步:右键点击刚才打开的视图，点击弹出菜单中的"关闭"按钮，关闭此视图的显示，这点要注意，若不先关闭的话直接在原数据表中修改数据该视图的内容不会变化，需要先关闭一下在重新打开才能刷新结果，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/view_duplicate_close_show.png"/>
+							<div>图3_8</div>
+						</div>
+						第8步:我们打开导入数据的那个excel文件修改"成绩表"在，添加一行数据，例如添加学号为7，考试批次为3，各科成绩都是20的一行，然后存盘，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/add_data.png"/>
+							<div>图3_9</div>
+						</div>
+						第9步:双击左侧的"成绩表学号及考试批次同时重复项"视图，右侧便打开该视图并显示新的查询结果，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/new_view_result.png"/>
+							<div>图3_9</div>
+						</div>
+						我们看到多出来两行，我用红线标了一下，如图:
+						<div class="class___image">
+							<img src="./refs/0003/imgs/new_view_result_outline.png"/>
+							<div>图3_9</div>
+						</div>
+						为了便于后面的说明，将该视图关闭再将刚才添加的数据从excel文件中删除。
+					</div>
 				</div>
 				<div>
 					<h3>差集</h3>
 					<div>
-						数据在另一个表中不存在
+						该表中的数据在另一个表中不存在
+						<br/>
+						例如查询"学员表"中谁没有考试成绩，即在"学员表"的学号在"成绩表"没有该"学号"的记录，现举例说明:
+						<br/>
+						第1步:点击上部的"创建"标签按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0004/imgs/create_view_button.png"/>
+							<div>图4_1</div>
+						</div>
+						第2步:在弹出的窗口中选择"查找不匹配项查询向导"，点击"确定"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0004/imgs/create_view_different_panel.png"/>
+							<div>图4_2</div>
+						</div>
+						第3步:选择"学员表"，点击"下一步"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0004/imgs/create_view_different_select_table1.png"/>
+							<div>图4_3</div>
+						</div>
+						第4步:选择"成绩表"，点击"下一步"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0004/imgs/create_view_different_select_table2.png"/>
+							<div>图4_4</div>
+						</div>
+						第5步:点击中间的按钮是两个表的"学号"字段作为比较条件字段，点击"下一步"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0004/imgs/create_view_different_select_equal_field.png"/>
+							<div>图4_5</div>
+						</div>
+						第6步:此时可以选择除了比较条件字段之外还要显示的字段，我们可以都选上，然后选择"下一步"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0004/imgs/create_view_different_select_other_field.png"/>
+							<div>图4_6</div>
+						</div>
+						第7步:此时可以指定查询结果的名称，我们修改该名称为"没有考试成绩的学员"然后选择"完成"按钮，如图:
+						<div class="class___image">
+							<img src="./refs/0004/imgs/create_view_difference_set_name.png"/>
+							<div>图4_7</div>
+						</div>
+						结果如图:
+						<div class="class___image">
+							<img src="./refs/0004/imgs/view_difference_data.png"/>
+							<div>图4_8</div>
+						</div>
 					</div>
 				</div>
 				<div>

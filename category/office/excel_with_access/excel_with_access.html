@@ -187,12 +187,14 @@
 						}
 						const index = i;
 						a[i].addEventListener('click', (e) => {
-							if (ca[index]) {
+							const c_page = ca[index];
+							if (c_page) {
 								m_style.color = 'rgb(12, 93, 243)';
 								style.display = 'none';
 								m_style = a[index].style;
 								m_style.color = 'red';
-								style = ca[index].style;
+								c_page.scrollTo(0, 0);
+								style = c_page.style;
 								style.display = 'block';
 								mch.push(index);
 							}

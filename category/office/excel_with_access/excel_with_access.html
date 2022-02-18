@@ -177,40 +177,57 @@
 				const menu_click_history = [];
 				const mch = menu_click_history;
 				{
-					const a = menu_div.children;
-					const ca = content_div.children;
-					let m_style = a[0].style;
-					let style = ca[0].style;
-					for (let i = 0, l = a.length; i < l; i++) {
-						if (ca[i]) {
-							ca[i].style.display = 'none';
+					const menu_page_share = {
+						previous_index : 0,
+						current_index : 0,
+						menu_dom_array : menu_div.children,
+						content_dom_array : content_div.children,
+						data_array : [],
+						menu_click_history : [],
+
+						click(i) {
+							const pi = this.previous_index = this.current_index;
+							this.current_index = i;
+							const p_menu = this.menu_dom_array[pi];
+							const c_menu = this.menu_dom_array[i];
+							const p_page = this.content_dom_array[pi];
+							const c_page = this.content_dom_array[i];
+							const p_data = this.data_array[pi];
+							const c_data = this.data_array[i];
+							return {
+								p_menu,
+								c_menu,
+								p_page,
+								c_page,
+								p_data,
+								c_data,
+								menu_click_history : this.menu_click_history,
+							};
+							
+						}
+					};
+					for (let i = 0, l = menu_page_share.menu_dom_array.length; i < l; i++) {
+						menu_page_share.data_array[i] = {};
+						const c_page = menu_page_share.content_dom_array[i];
+						if (c_page) {
+							c_page.style.display = 'none';
 						}
 						const index = i;
-						a[i].addEventListener('click', (e) => {
-							const c_page = ca[index];
+						menu_page_share.menu_dom_array[i].addEventListener('click', (e) => {
+							const {p_menu, c_menu, p_page, c_page, p_data, c_data, menu_click_history} = menu_page_share.click(index);
 							if (c_page) {
-								m_style.color = 'rgb(12, 93, 243)';
-								style.display = 'none';
-								m_style = a[index].style;
-								m_style.color = 'red';
-								c_page.scrollTo(0, 0);
-								style = c_page.style;
-								style.display = 'block';
-								mch.push(index);
+								p_menu.style.color = 'rgb(12, 93, 243)';
+								p_data.scrollLeft = content_div.scrollLeft;
+								p_data.scrollTop = content_div.scrollTop;
+								p_page.style.display = 'none';
+								c_menu.style.color = 'red';
+								c_page.style.display = 'block';
+								content_div.scrollTo(c_data.scrollLeft || 0, c_data.scrollTop || 0);
+								menu_click_history.push(index);
 							}
 						});
 					}
-					a[0].click();
-				}
-				{
-					const ma = menu_div.children;
-					const a = document.querySelectorAll('[data-click_menu_index]');
-					a.forEach((dom) => {
-						dom.addEventListener('click', (e) => {
-							const i = dom.dataset.click_menu_index;
-							ma[i].click();
-						});
-					});
+					menu_page_share.menu_dom_array[0].click();
 				}
 			}
 		</script>

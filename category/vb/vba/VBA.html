@@ -15,6 +15,7 @@
 				font-size : 18px;
 				vertical-align : bottom;
 				white-space : nowrap;
+				padding-left : 4px;
 			}
 			.class___tab {
 				display : inline-block;
@@ -43,8 +44,8 @@
 			section {
 				margin-top : 60px;
 			}
-			section > p {
-				padding-left : 2em;
+			section > div {
+				margin-left : 2em;
 				line-height : 180%;
 			}
 			#id___textarea___input_source_code {
@@ -78,9 +79,9 @@
 				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
 			}
 			window.onload = (e) => {
-				let button = document.getElementById('id___button___convert_code_to_html');
+				//let button = document.getElementById('id___button___convert_code_to_html');
 				//console.log(button);
-				button.addEventListener('click', convert_code_to_html, false);
+				//button.addEventListener('click', convert_code_to_html, false);
 			}
 		</script>
 	</head>
@@ -104,8 +105,8 @@
 			</section>
 			<section>
 				<h2>Workbook_Open事件</h2>
-				<p>打开工作簿时，发生此事件</p>
-				<p>
+				<div>打开工作簿时，发生此事件</div>
+				<div>
 					例如:
 					<br/>
 					每次打开工作簿时，本示例都最大化 Microsoft Excel 窗口。
@@ -114,62 +115,62 @@
 							<span class="class___tab">&#9;</span>Application.WindowState = xlMaximized<br/>
 						End Sub
 					</div>
-				</p>
+				</div>
 			</section>
 			<section>
 				<h3>获取相应的sheet</h3>
-				<p>
+				<div>
 					<span class="shell_instruction">sheets(index)</span>
 					<br/>
 					index : integer value, sheet index start from 1, for example sheet1 is sheets(1), 整形, sheet从1开始, 例如 sheets(1)
-				</p>
-				<p>
+				</div>
+				<div>
 					<span class="shell_instruction">sheets("sheet_name")</span>
 					<br/>
 					sheet_name : string value, sheet's name for sheet name is 'mytable' is sheets("mytable"), 字符串, sheet的名字例如名字为'mytable'的sheet是sheets("mytable")
-				</p>
+				</div>
 				<h3>获取一定范围内的单元格</h3>
-				<p>
+				<div>
 					<span class="shell_instruction">sheets(index).cells(row_index, column_index)</span>
 					<br/>
 					row_index : integer value, line number, from 1 start, for example "A6" cell this value is 6, 整形, 行号, 从1开始, 例如 "A6" 则此值为6
 					<br/>
 					column_index : integer value, column number, from 1 start, for example "A6" cell this value is 1, 整形, 列号, 从1开始, 例如 "A6" 则此值为1
-				</p>
-				<p>
+				</div>
+				<div>
 					<span class="shell_instruction">sheets("sheet_name").range("E3:F6")</span>
 					<br/>
 					E3:F6 : select from E3 to F6, 选择从 E3 到 F6
-				</p>
+				</div>
 				<h3>读取单元格的值</h3>
-				<p>
+				<div>
 					<span class="shell_instruction">v = sheets(index).cells(2, 3).value</span>
 					<br/>
 					读取C2单元格中的值到变量v中
-				</p>
+				</div>
 				<h3>设置单元格的值</h3>
-				<p>
+				<div>
 					<span class="shell_instruction">sheets(index).cells(2, 3).value = v</span>
 					<br/>
 					设置C2单元格中的值为变量v中的值
-				</p>
+				</div>
 				<h3>清空sheet</h3>
-				<p>
+				<div>
 					<span class="shell_instruction">sheets(index).cells.clear</span>
 					<br/>
-				</p>
+				</div>
 				<h3>清空指定范围单元格</h3>
-				<p>
+				<div>
 					<span class="shell_instruction">sheets("sheet_name").range("E3:F6").cells.clear</span>
 					<br/>
 					clear from E3 to F6, 清空从 E3 到 F6
-				</p>
+				</div>
 			</section>
 			<section>
 				<h3>选中相应的sheet</h3>
-				<p>
+				<div>
 					<span class="shell_instruction">sheets(index).activate</span>
-				</p>
+				</div>
 				<h3>选中相应的单元格, 选中sheet1的C2单元格</h3>
 				<div class="class___code">
 					sheets(1).activate
@@ -199,6 +200,47 @@
 					<div class="class___code">
 						Rows(i).Delete
 					</div>
+				</div>
+			</section>
+			<section>
+				<h3>获取sheet中数据的首尾行号及首尾列号</h3>
+				<div>
+					首行号:
+					<div class="class___code">
+						Application.ActiveSheet.UsedRange.Row
+					</div>
+					尾行号:
+					<div class="class___code">
+						Application.ActiveSheet.UsedRange.Rows.count + Application.ActiveSheet.UsedRange.Row - 1
+					</div>
+					首列号:
+					<div class="class___code">
+						Application.ActiveSheet.UsedRange.Column
+					</div>
+					尾列号:
+					<div class="class___code">
+						Application.ActiveSheet.UsedRange.Columns.count + Application.ActiveSheet.UsedRange.Column - 1
+					</div>
+					但要注意当sheet中没有数据时前面的这4个值都是1，要在判断一下sheet.cells(1, 1).value的值是否存在
+					<div class="class___code">
+						StrComp(Application.ActiveSheet.Cells(1, 1).Text, "", vbTextCompare)
+					</div>
+					若返回值为0表明没有数据
+				</div>
+			</section>
+			<section>
+				<h3>新建excel文件</h3>
+				<div>
+					<div class="class___code">
+						Dim&nbsp;wb&nbsp;As&nbsp;Workbook<br/>
+						Set&nbsp;wb&nbsp;=&nbsp;Application.Workbooks.Add<br/>
+						wb.SaveAs&nbsp;"file_path"<br/>
+						wb.close<br/>
+					</div>
+					其中Workbook类对应一个excel文件，Application是一个全局变量表示整个程序，Workbooks表示全部打开的excel文件的集合，
+					Workbooks.Add表示向Workbooks中添加一个Workbook类实例即一个excel文件并赋值给wb变量
+					wb.SaveAs为调用另存为函数，"file_path"是一个字符串为文件保存路径，
+					wb.close关闭新建的excel文件
 				</div>
 			</section>
 		</article>

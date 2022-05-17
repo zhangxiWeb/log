@@ -226,6 +226,10 @@
 						StrComp(Application.ActiveSheet.Cells(1, 1).Text, "", vbTextCompare)
 					</div>
 					若返回值为0表明没有数据
+					<br/>
+					这种方式获取的是使用的单元格，例如内容只在2到6行，但第9行设置了边框但没有内容，此时得到的使用的首尾行号是2和9而不是2和6
+					<br/>
+					获得某列有内容单元格的尾行号的方法，例如获取B列有内容单元格的尾行号，sheet.range("B65535").end(xlUp)，xlUp相当于在键盘上按上键，end(xlUp)相当于在键盘上按ctrl和↑
 				</div>
 			</section>
 			<section>

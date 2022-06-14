@@ -94,6 +94,12 @@
 				</p>
 			</header>
 			<section>
+				<h3>后缀与代码保存</h3>
+				<div>
+					当后缀为.xlsx时不会保存vba代码，下次再打开该文件发现代码都没了，要保存为.xlsm后缀的文件
+				</div>
+			</section>
+			<section>
 				<h2>VBA Reference Document URL</h2>
 				<div>
 					<a target="_blank" href="https://docs.microsoft.com/en-us/office/vba/api/overview/">Office VBA Reference</a>
@@ -245,6 +251,127 @@
 					Workbooks.Add表示向Workbooks中添加一个Workbook类实例即一个excel文件并赋值给wb变量
 					wb.SaveAs为调用另存为函数，"file_path"是一个字符串为文件保存路径，
 					wb.close关闭新建的excel文件
+				</div>
+			</section>
+			<section>
+				<h3>关闭提示等</h3>
+				<div>
+					<div class="class___code">
+						Application.AskToUpdateLinks&nbsp;=&nbsp;False
+						Application.DisplayAlerts&nbsp;=&nbsp;False
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>函数返回值</h3>
+				<div>
+					当返回值是对象时，返回值语句也要有set，如函数名为get_sheet，则返回语句要用Set get_sheet = ...
+					<br/>
+					函数返回值语句并不会退出函数，可以写在任意地方，exit function才是退出函数的语句
+				</div>
+			</section>
+			<section>
+				<h3>异常捕获</h3>
+				<div>
+					On Error Resume Next
+					<br/>
+					遇到错误继续执行下一步
+				</div>
+			</section>
+			<section>
+				<h3>全局变量</h3>
+				<div>
+					全局变量的声明必需在任意sub或function前面，只要出现了sub或function之后声明的全局变量全都无效，在调试状态查看"视图"-&gt;"本地窗口"中的当前模块变量发现没有后面声明的全局变量，在某个调用中设置了全局变量的值在另一处也访问不到该值
+				</div>
+			</section>
+			<section>
+				<h3>控制鼠标</h3>
+				<div>
+					<div class="class___code">
+						'定义数据类型<br/>
+						Public&nbsp;Type&nbsp;POINTAPI:&nbsp;x&nbsp;As&nbsp;Long:&nbsp;y&nbsp;As&nbsp;Long:&nbsp;End&nbsp;Type<br/>
+						<br/>
+						'声明并引入操作系统api,&nbsp;获取鼠标位置的函数<br/>
+						Public&nbsp;Declare&nbsp;Function&nbsp;SetCursorPos&nbsp;Lib&nbsp;"user32"&nbsp;(ByVal&nbsp;x&nbsp;As&nbsp;Long,&nbsp;ByVal&nbsp;y&nbsp;As&nbsp;Long)&nbsp;As&nbsp;Long<br/>
+						<br/>
+						'声明并引入操作系统api,&nbsp;设置鼠标位置的函数<br/>
+						Public&nbsp;Declare&nbsp;Function&nbsp;GetCursorPos&nbsp;Lib&nbsp;"user32"&nbsp;(lpPoint&nbsp;As&nbsp;POINTAPI)&nbsp;As&nbsp;Long<br/>
+						<br/>
+						'声明并引入操作系统api,&nbsp;触发鼠标事件的函数<br/>
+						Public&nbsp;Declare&nbsp;Sub&nbsp;mouse_event&nbsp;Lib&nbsp;"user32"&nbsp;(ByVal&nbsp;dwFlags&nbsp;As&nbsp;Long,&nbsp;ByVal&nbsp;dx&nbsp;As&nbsp;Long,&nbsp;ByVal&nbsp;dy&nbsp;As&nbsp;Long,&nbsp;ByVal&nbsp;cButtons&nbsp;As&nbsp;Long,&nbsp;ByVal&nbsp;dwExtraInfo&nbsp;As&nbsp;Long)<br/>
+						<br/>
+						'调用引入的api,&nbsp;获取鼠标的x坐标<br/>
+						Public&nbsp;Function&nbsp;get_mouse_x()&nbsp;As&nbsp;Long<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;pt&nbsp;As&nbsp;POINTAPI<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;GetCursorPos&nbsp;pt<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;get_mouse_x&nbsp;=&nbsp;pt.x<br/>
+						End&nbsp;Function<br/>
+						<br/>
+						'调用引入的api,&nbsp;获取鼠标的y坐标<br/>
+						Public&nbsp;Function&nbsp;get_mouse_y()&nbsp;As&nbsp;Long<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;pt&nbsp;As&nbsp;POINTAPI:&nbsp;GetCursorPos&nbsp;pt:&nbsp;get_mouse_y&nbsp;=&nbsp;pt.y<br/>
+						End&nbsp;Function<br/>
+						<br/>
+						'模拟鼠标点击<br/>
+						Public&nbsp;Sub&nbsp;clik(keydown)<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;Select&nbsp;Case&nbsp;UCase(keydown)<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case&nbsp;"LEFT"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mouse_event&nbsp;&amp;H2&nbsp;+&nbsp;&amp;H4,&nbsp;0,&nbsp;0,&nbsp;0,&nbsp;0<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case&nbsp;"RIGHT"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mouse_event&nbsp;&amp;H8&nbsp;+&nbsp;&amp;H10,&nbsp;0,&nbsp;0,&nbsp;0,&nbsp;0<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case&nbsp;"MIDDLE"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mouse_event&nbsp;&amp;H20&nbsp;+&nbsp;&amp;H40,&nbsp;0,&nbsp;0,&nbsp;0,&nbsp;0<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case&nbsp;"DBCLICK"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mouse_event&nbsp;&amp;H2&nbsp;+&nbsp;&amp;H4,&nbsp;0,&nbsp;0,&nbsp;0,&nbsp;0<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mouse_event&nbsp;&amp;H2&nbsp;+&nbsp;&amp;H4,&nbsp;0,&nbsp;0,&nbsp;0,&nbsp;0<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;End&nbsp;Select<br/>
+						End&nbsp;Sub<br/>
+					</div>
+				</div>
+				使用方法见下面的三个宏调用
+				<div class="class___code">
+					Public&nbsp;Sub&nbsp;macro_显示鼠标位置()<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;pt&nbsp;As&nbsp;POINTAPI<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;GetCursorPos&nbsp;pt<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;"mouse&nbsp;position&nbsp;is&nbsp;x:"&nbsp;&amp;&nbsp;pt.x&nbsp;&amp;&nbsp;",&nbsp;y:"&nbsp;&amp;&nbsp;pt.y<br/>
+					End&nbsp;Sub<br/>
+					<br/>
+					Public&nbsp;Sub&nbsp;macro_设置鼠标位置()<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;str&nbsp;As&nbsp;String<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;x&nbsp;As&nbsp;Long<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;y&nbsp;As&nbsp;Long<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;'等待用户在输入框中输入x坐标值<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;=&nbsp;InputBox("x:",&nbsp;"mouse&nbsp;position")<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;'转化为Long型数据<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&nbsp;CLng(str)<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;'等待用户在输入框中输入y坐标值<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;=&nbsp;InputBox("y:",&nbsp;"mouse&nbsp;position")<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;'转化为Long型数据<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;=&nbsp;CLng(str)<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;SetCursorPos&nbsp;x,&nbsp;y<br/>
+					End&nbsp;Sub<br/>
+					<br/>
+					Public&nbsp;Sub&nbsp;macro_在指定的位置点击鼠标左键()<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;str&nbsp;As&nbsp;String<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;x&nbsp;As&nbsp;Long<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Dim&nbsp;y&nbsp;As&nbsp;Long<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;'等待用户在输入框中输入x坐标值<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;=&nbsp;InputBox("x:",&nbsp;"mouse&nbsp;position")<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;'转化为Long型数据<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&nbsp;CLng(str)<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;'等待用户在输入框中输入y坐标值<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;=&nbsp;InputBox("y:",&nbsp;"mouse&nbsp;position")<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;'转化为Long型数据<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;=&nbsp;CLng(str)<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;SetCursorPos&nbsp;x,&nbsp;y<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;clik&nbsp;"LEFT"<br/>
+					End&nbsp;Sub<br/>
 				</div>
 			</section>
 		</article>

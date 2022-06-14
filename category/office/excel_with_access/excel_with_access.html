@@ -159,6 +159,12 @@
 				border : 1px solid gray;
 			}
 		</style>
+		<style>
+			.SQL {
+				background-color :mediumspringgreen;
+				color :mediumorchid;
+			}
+		</style>
 		<script>
 			window.body_load = function(event) {
 				const whole = document.getElementById('id___article');
@@ -244,17 +250,13 @@
 				<div data-section="">查重</div>
 				<div data-section="">差集</div>
 				<div data-section="">表关联</div>
-				<div data-section="">SQL实现表关联</div>
-				<div data-section="">SQL等值查询</div>
 				<div data-section="">SQL比较查询</div>
-				<div data-section="">SQL任意长度字符模糊查询</div>
-				<div data-section="">SQL定长字符模糊查询</div>
-				<div data-section="">SQL指定位数数字查询</div>
-				<div data-section="">SQL逻辑且条件</div>
-				<div data-section="">SQL逻辑或条件</div>
-				<div data-section="">SQL逻辑条件组合使用</div>
+				<div data-section="">SQL模糊查询</div>
+				<div data-section="">SQL条件组合</div>
 				<div data-section="">SQL排序</div>
-				<div data-section="">SQL查询的去重查询</div>
+				<div data-section="">SQL实现表关联</div>
+				<div data-section="">SQL去重查询</div>
+				<div data-section="">SQL分组查询</div>
 			</section>
 			<section id="id___section_content">
 				<div>
@@ -263,6 +265,7 @@
 						<span class="class___tab"></span>
 						记录Excel的操作教程和利用Office带的Access辅助Excel的操作。
 						<br/>
+						<span class="class___tab"></span>
 						有些功能在Excel操作比较麻烦可以借助Access更简单更快速的实现这些功能，此文档的内容是挑选过的，挑选内容为access的知识中，基本、不难、好记能满足大部分功能需求的知识。
 					</div>
 				</div>
@@ -678,7 +681,7 @@
 							<img src="./refs/0005/imgs/run_button.png"/>
 							<div>图5_9</div>
 						</div>
-						此事显示查询结果, 下面将查询保存, 用鼠标右键"查询1", 弹出菜单, 如下图5_10:
+						此时显示查询结果, 下面将查询保存, 用鼠标右键"查询1", 弹出菜单, 如下图5_10:
 						<div class="class___image">
 							<img src="./refs/0005/imgs/query_design_show_result.png"/>
 							<div>图5_10</div>
@@ -691,16 +694,396 @@
 					</div>
 				</div>
 				<div>
-					<h3>SQL实现表关联</h3>
-					<div></div>
-				</div>
-				<div>
-					<h3>SQL等值查询</h3>
-					<div></div>
-				</div>
-				<div>
 					<h3>SQL比较查询</h3>
-					<div></div>
+					<div>
+						<span class="class___tab"></span>SQL即结构化查询语言, 在此我们可以理解为按照某种格式书写的可操作数据的文本。通过一个例子初步接触SQL。用SQL实现对一个表的比较条件查询。
+						<br/>
+						<span class="class___tab"></span>举例1:创建一个查询来显示"学员表"中所有的女学员。
+						<br/>
+						许多之前有过的操作及图片再此及之后不再描述, 若忘了可参看前面的内容。
+						<br/>
+						首先选择上部工具栏中的"创建"-&gt;"查询设计"。
+						<br/>
+						添加"学员表", 然后再下面选择显示列的表格中添加'学员表.*'。
+						<br/>
+						现在要进入SQL编辑模式, 有两种方式:
+						<br/>
+						第一种方式, 右键点击主内容区域上的"查询1"标签, 列出一个菜单, 如下图6_1:
+						<div class="class___image">
+							<img src="./refs/0006/imgs/right_button_menu_sql.png"/>
+							<div>图6_1</div>
+						</div>
+						选择SQL视图, 进入SQL编辑模式, 如下图6_2:
+						<div class="class___image">
+							<img src="./refs/0006/imgs/SQL_edit_panel.png"/>
+							<div>图6_2</div>
+						</div>
+						文本内容如下:
+						<div class="SQL">
+							SELECT 学员表.*
+							<br/>
+							FROM 学员表;
+						</div>
+						第二种方式, 点击上部工具栏中的"设计"-&gt;"视图"列出一个菜单, 如下图6_3:
+						<div class="class___image">
+							<img src="./refs/0006/imgs/view_edit_type_button.png"/>
+							<div>图6_3</div>
+						</div>
+						同样点击SQL视图, 进入SQL编辑模式, 效果如前面的图6_2。
+						<br/>
+						在 <span class="SQL">;</span> 之前输入enter键加个换行并输入 <span class="SQL"></span>where 性别="女"</span> 注意这里的双引号是英文的, 文本都要用双引号括起来, 如下图6_4:
+						<div class="class___image">
+							<img src="./refs/0006/imgs/SQL_edit_new_content.png"/>
+							<div>图6_4</div>
+						</div>
+						文本内容如下:
+						<div class="SQL">
+							SELECT 学员表.*
+							<br/>
+							FROM 学员表
+							<br/>
+							where 性别='女';
+						</div>
+						现在点击上部工具栏中的"设计"-&gt;"运行"按钮, 如下图6_5:
+						<div class="class___image">
+							<img src="./refs/0006/imgs/view_run_button.png"/>
+							<div>图6_5</div>
+						</div>
+						来查看查询结果, 如下图6_6:
+						<div class="class___image">
+							<img src="./refs/0006/imgs/SQL_result_equal_1.png"/>
+							<div>图6_6</div>
+						</div>
+						现结合本例说明其含义。
+						<br/>
+						第一行开头是一个关键字(SQL中预留的单词, 具有特定的用途, 且关键字不区分大小写) <span class="SQL">SELECT</span> , 这个 <span class="SQL">select</span> 表明这是一个查询语句, 
+						在这之后是一个空格, 以分开后面的文本, 再之后是 <span class="SQL">学员表.*</span> 说明要显示哪些列, <span class="SQL">*</span> 表示全部的列, <span class="SQL">学员表.*</span> 表示成绩表中的全部列,
+						<br/>
+						第二行开头是一个关键字 <span class="SQL">FROM</span> 跟一个空格, 用于标识结束前面的列名并开始后面的数据来源列表, 然后是 <span class="SQL">学员表</span> , 表明数据来源是 学员表
+						<br/>
+						第三行开头是一个关键字 <span class="SQL">where</span> , 用于标识结束前面的来源列表并开始后面的筛选条件列表, 然后跟一个空格, 后面是条件性别等于女, 最后跟一个 <span class="SQL">;</span> 标识语句结束, 只有一条SQL时 <span class="SQL">;</span> 省略不写也可以, 若没有此行则表示查学员表的全表。
+						<br/>
+						这里用了三行主要是为了看着结构清晰, 也可以写在一行上, 在第二行和第三行前加个空格即可。
+						<br/>
+						现在再来回顾一下SQL查询语句的结构:
+						<div style="background-color: black; color : yellowgreen;">
+							select 要显示的列的列名(如:列名1, 列名2, ..., 列名n 中间用逗号隔开, 注意是英文的逗号, 中英文的逗号不一样)
+							<br/>
+							from 表名(有多个表时用逗号隔开)
+							<br/>
+							where 条件(可以没有条件)
+						</div>
+						可以这样来理解，我们要查询数据所以要先确定对数据操作的种类是查询, 所以开头是select 表名是查询操作,
+						<br/>
+						然后是查询还要确定数据要显示哪些列,
+						<br/>
+						之后还要确定数据是从哪些表中来的, 所以有一个 from 来标识后面写的是表名,
+						<br/>
+						再之后还要确定数据查询的条件, 所以有一个 where 来标识后面写的是表名查询条件。
+						<br/>
+						前面的表名也可以是查询, 即我们创建的查询, 也就是我们可以在之前的查询结果之上再建立新的查询。
+						<br/>
+						<br/>
+						在条件中除等号外还有别的符号, 下面列出(比较时对数值可以进行加+、减-、乘*、除\、取余mod):
+						<br/>
+						<span class="SQL">=</span> 表示相同, 可比较文本及数值、
+						<br/>
+						<span class="SQL">&lt;&gt;</span> 表示不相同, 可比较文本及数值, <span class="SQL">SELECT * FROM 成绩表 where 语文 - 数学 &lt;&gt; 0;</span> 语文成绩不等于数学成绩, 效果如下图6_7:、
+						<div class="class___image">
+							<img src="./refs/0006/imgs/SQL_not_equal.png"/>
+							<div>图6_7</div>
+						</div>
+						<span class="SQL">&lt;</span> 表示小于, 可比较数值, <span class="SQL">SELECT * FROM 成绩表 where 数学 \ 60 &lt; 1;</span> 数学小于60, 效果如下图6_8:、
+						<div class="class___image">
+							<img src="./refs/0006/imgs/SQL_small.png"/>
+							<div>图6_8</div>
+						</div>
+						<span class="SQL">&lt;=</span> 表示小于等于, 可比较数值, <span class="SQL">SELECT * FROM 学员表 where 学号 mod 2 &lt;= 0;</span> 学号为偶数的学员, 效果如下图6_9:、
+						<div class="class___image">
+							<img src="./refs/0006/imgs/SQL_small_equal.png"/>
+							<div>图6_9</div>
+						</div>
+						<span class="SQL">&gt;</span> 表示大于, 可比较数值, <span class="SQL">SELECT * FROM 成绩表 where 语文 + 数学 + 物理 &gt; 210;</span> 语文数学物理的和大于210, 效果如下图6_10:、
+						<div class="class___image">
+							<img src="./refs/0006/imgs/SQL_bigger.png"/>
+							<div>图6_10</div>
+						</div>
+						<span class="SQL">&gt;=</span> 表示大于等于, 可比较数值, <span class="SQL">SELECT * FROM 成绩表 where 语文 + 数学 + 物理 &gt;= 210;</span> 语文数学物理的和大于等于210, 效果如下图6_11:、
+						<div class="class___image">
+							<img src="./refs/0006/imgs/SQL_bigger_equal.png"/>
+							<div>图6_11</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h3>SQL模糊查询</h3>
+					<div>
+						<span class="class___tab"></span>举例1:查询"学员表"中所有姓王的学员学号及姓名。SQL如下:
+						<br/>
+						<span class="SQL">
+							SELECT 学号, 姓名 AS 姓王的
+							<br/>
+							FROM 学员表
+							<br/>
+							WHERE 姓名 Like '王*';
+						</span>
+						<br/>
+						效果如下图7_1:
+						<div class="class___image">
+							<img src="./refs/0007/imgs/SQL_query_like_any.png"/>
+							<div>图7_1</div>
+						</div>
+						第一行的 <span class="SQL">学号, 姓名 AS 姓王的</span> 是要显示的列的列表, 用英文状态下的逗号分隔, 
+						<br/>
+						其中的 <span class="SQL">姓名 AS 姓王的</span> 表示显示 姓名 这列的信息, 但在显示时给 姓名 换了个别称, 这样该列的标题显示为 姓王的 , 这里的 <span class="SQL">AS</span> 是个关键字用于标识后面是别称。
+						<br/>
+						第三行的 <span class="SQL">姓名 Like '王*'</span> 里的 <span class="SQL">Like</span> 是个关键字, 表明要进行模糊查询, <span class="SQL">'王*'</span> 表明头一个字符是 王 , 后面的星号用于匹配任意长度的任意字符, 也就是其名字只要第一个字是王字, 后面无论有几个字、字是什么都符合条件。
+						<br/>
+						<br/>
+						<span class="class___tab"></span>举例2:查询"学员表"中所有姓名长度是四个字的学员。SQL如下:
+						<br/>
+						<span class="SQL">
+							SELECT *
+							<br/>
+							FROM 学员表
+							<br/>
+							WHERE 姓名 Like '????';
+						</span>
+						<br/>
+						效果如下图7_2:
+						<div class="class___image">
+							<img src="./refs/0007/imgs/SQL_query_like_fixed_length_character.png"/>
+							<div>图7_2</div>
+						</div>
+						第三行的 <span class="SQL">'????'</span> 匹配四个任意字符, 每一个问号匹配一个任意字符。
+						<br/>
+						<br/>
+						<span class="class___tab"></span>举例3:查询"学员表"中所有备注是两位数字的学员。SQL如下:
+						<br/>
+						<span class="SQL">
+							SELECT *
+							<br/>
+							FROM 学员表
+							<br/>
+							WHERE 备注 like '##';
+						</span>
+						<br/>
+						效果如下图7_3:
+						<div class="class___image">
+							<img src="./refs/0007/imgs/SQL_query_like_fixed_length_digit.png"/>
+							<div>图7_3</div>
+						</div>
+						第三行的 <span class="SQL">'##'</span> 匹配两位数字, 每一个井号匹配一位数字。
+					</div>
+				</div>
+				<div>
+					<h3>SQL条件组合</h3>
+					<div>
+						<span class="class___tab"></span>查询条件也可组合使用。
+						<br/>
+						<span class="class___tab"></span>举例1:查询"学员表"中所有姓王的男学员。
+						<div class="SQL">
+							SELECT *
+							<br/>
+							FROM 学员表
+							<br/>
+							WHERE 性别='男' and 姓名 like '王*';
+						</div>
+						效果如下图8_1:
+						<div class="class___image">
+							<img src="./refs/0008/imgs/SQL_query_and.png"/>
+							<div>图8_1</div>
+						</div>
+						第三行中的 <span class="SQL">and</span> 是个关键字, 表明要同时满足左右两侧的条件, 相当于 且 的意思, 也称为 逻辑与。
+						<br/>
+						<br/>
+						<span class="class___tab"></span>举例2:查询"学员表"中所有姓王的和姓赵的学员。
+						<div class="SQL">
+							SELECT *
+							<br/>
+							FROM 学员表
+							<br/>
+							WHERE 姓名 like '王*' or 姓名 like '赵*';
+						</div>
+						效果如下图8_2:
+						<div class="class___image">
+							<img src="./refs/0008/imgs/SQL_query_or.png"/>
+							<div>图8_2</div>
+						</div>
+						第三行中的 <span class="SQL">and</span> 是个关键字, 表明满足左右两侧的条件中的一个即可, 相当于 或 的意思, 也称为 逻辑或。
+						<br/>
+						<br/>
+						<span class="class___tab"></span>举例3:查询"学员表"中所有不姓王的学员。
+						<div class="SQL">
+							SELECT *
+							<br/>
+							FROM 学员表
+							<br/>
+							WHERE 姓名 not like '王*';
+						</div>
+						效果如下图8_3:
+						<div class="class___image">
+							<img src="./refs/0008/imgs/SQL_query_not.png"/>
+							<div>图8_3</div>
+						</div>
+						第三行中的 <span class="SQL">not</span> 是个关键字, 表明不满足后面的条件即可, 相当于 非 的意思, 也称为 逻辑非。
+						<br/>
+						<br/>
+						<span class="class___tab"></span>举例4:查询"成绩表"中语文和数学一门大于60一门不大于60的记录。
+						<div class="SQL">
+							SELECT *
+							<br/>
+							FROM 成绩表
+							<br/>
+							where 语文 > 60 xor 数学 > 60;
+						</div>
+						效果如下图8_4:
+						<div class="class___image">
+							<img src="./refs/0008/imgs/SQL_query_xor.png"/>
+							<div>图8_4</div>
+						</div>
+						第三行中的 <span class="SQL">xor</span> 是个关键字, 表明左右两侧的条件一个满足一个不满足。
+						<br/>
+						<br/>
+						<span class="class___tab"></span>举例5:查询"学员表"中姓姬的男学员和姓王的女学员还有学号为10的学员
+						<div class="SQL">
+							SELECT *
+							<br/>
+							FROM 学员表
+							<br/>
+							where (姓名 like '姬*' and 性别='男') or (姓名 like '王*' and 性别='女') or 学号=10;
+						</div>
+						效果如下图8_5:
+						<div class="class___image">
+							<img src="./refs/0008/imgs/SQL_query_condition_parenthesis.png"/>
+							<div>图8_5</div>
+						</div>
+						第三行中的括号类似加减乘除中的括号, 先组合, 括号之内还可以再套括号, 内层的优先。先组合姓姬的与男性条件, 记为组合1, 再组合姓王的与女性条件, 记为组合2, 再将组合1与组合2做或组合, 最后再与学号等于10做或组合。
+					</div>
+				</div>
+				<div>
+					<h3>SQL排序</h3>
+					<div>
+						<span class="class___tab"></span>查询结果还可以排序。
+						<br/>
+						<span class="class___tab"></span>举例1:将"成绩表"先按数学降序, 再物理升序, 最后按语文升序, 进行排序。
+						<div class="SQL">
+							SELECT *
+							<br/>
+							FROM 成绩表
+							<br/>
+							where 学号 &lt;&gt; 5
+							<br/>
+							order by 数学 desc, 物理 asc, 语文 asc;
+						</div>
+						效果如下图9_1:
+						<div class="class___image">
+							<img src="./refs/0009/imgs/SQL_query_order_by.png"/>
+							<div>图9_1</div>
+						</div>
+						第四行开头是两个关键字 <span class="SQL">order by</span> 跟一个空格, 用于标识开始后面的排序列表用逗号分隔, 然后是 <span class="SQL">数学 desc</span> , 表明将数学这列降序排序, <span class="SQL">物理 asc, 语文 asc</span> 然后将所有数学这列值相同的记录按照物理这列升序, 同理将语文这列升序。
+					</div>
+				</div>
+				<div>
+					<h3>SQL实现表关联</h3>
+					<div>
+						<span class="class___tab"></span>用SQL重新实现前面的表关联, 将多个表符合条件的记录关联显示
+						<br/>
+						<span class="class___tab"></span>举例:将"学员表"中的'姓名'、'性别'、'备注'信息显示到"成绩表"中对应的记录上, 通过'学号'来关联。
+						<div class="SQL">
+							SELECT b.姓名, b.性别, b.备注, a.*
+							<br/>
+							FROM 成绩表 as a, 学员表 as b
+							<br/>
+							where a.学号 = b.学号
+						</div>
+						效果如下图10_1:
+						<div class="class___image">
+							<img src="./refs/0010/imgs/SQL_query_table_relation_by_equal.png"/>
+							<div>图10_1</div>
+						</div>
+						第一行的每个要显示的列前面有一个字母和一个点, 这个字母是表的别名, 点分隔表名与列名, 表名可以用别名是为了可以少写几个字, <span class="SQL"></span>b.姓名</span> 表示 学员表 下的 姓名 这列。
+						<br/>
+						第二行的 <span class="SQL">成绩表 as a</span>, 是给 成绩表 起一个别名为 a, 这样在别的部分可以用 a 代替 成绩表, 可以少写许多字。
+						第三行的 <span class="SQL">a.学号 = b.学号</span> 与第一行的情况相同, 表名别称跟点再跟列名, 即 成绩表 下的 学号 与 学员表 下的 学号 相同的记录。
+					</div>
+				</div>
+				<div>
+					<h3>SQL去重查询</h3>
+					<div>
+						<span class="class___tab"></span>去除重复的行
+						<br/>
+						<span class="class___tab"></span>举例:显示所有参加过考试的学员信息, 思路是先将 成绩表 与 学员表 按学号关联起来, 筛选出符合条件的记录再去除重复的。
+						<div class="SQL">
+							SELECT distinct b.*
+							<br/>
+							FROM 成绩表 as a, 学员表 as b
+							<br/>
+							where a.学号 = b.学号
+						</div>
+						效果如下图11_1:
+						<div class="class___image">
+							<img src="./refs/0011/imgs/SQL_query_distinct.png"/>
+							<div>图11_1</div>
+						</div>
+						第一行的 <span class="SQL">SELECT</span> 后面多了一个 <span class="SQL">distinct</span> 这是一个关键字, 用于去除表中重复的内容, 如在查询结果中有多条一样的记录则只保留一条。
+					</div>
+				</div>
+				<div>
+					<h3>SQL分组查询</h3>
+					<div>
+						<span class="class___tab"></span>分组, 按组操作
+						<br/>
+						<span class="class___tab"></span>举例1:查询参加过考试的学员每个考试批次考了几次。
+						<div class="SQL">
+							SELECT 学号, 考试批次, count(1) as 次数, 
+							<br/>
+							FROM 成绩表
+							<br/>
+							where 1=1
+							<br/>
+							group by 学号, 考试批次
+						</div>
+						效果如下图12_1:
+						<div class="class___image">
+							<img src="./refs/0012/imgs/SQL_query_group_by.png"/>
+							<div>图12_1</div>
+						</div>
+						第一行的 <span class="SQL">count(1)</span> 是一个计数函数, 每条累积加1, 由SQL执行环境提供, 注意这列没有标题所以用别名的方式指定了一个。
+						<br/>
+						第三行的 <span class="SQL">where 1=1</span> 可以省略, 写在这里只是为了表明当 <span class="SQL">where</span> 和后面的 <span class="SQL">group by</span> 都有时, 它们的前后顺序。
+						<br/>
+						第四行开头是两个关键字 <span class="SQL">group by</span> 跟一个空格, 用于标识开始后面的分组列表用逗号分隔, 再后面的 <span class="SQL">学号, 考试批次</span> 表示将 学号 和 考试批次 都相同的分为一组。
+						<br/>
+						第一行的count函数之外还有许多进行分组操作时可用的函数, 在此列举几个:
+						<br/>
+						<span class="SQL">Sum(语文) AS 语文之合计</span><br/>
+						<span class="SQL">Avg(语文) AS 语文之平均值</span><br/>
+						<span class="SQL">Min(语文) AS 语文之最小值</span><br/>
+						<span class="SQL">Max(语文) AS 语文之最大值</span><br/>
+						<span class="SQL">First(语文) AS 分组中第一条的语文</span><br/>
+						<span class="SQL">Last(语文) AS 分组中最后一条的语文</span><br/>
+						<br/>
+						<br/>
+						<span class="class___tab"></span>举例2:查询参加过考试的学员每个考试批次考了几次并显示姓名、性别、备注。
+						<br/>
+						这次我们利用组合之前学过的知识来实现, 以本节举例1的结果作为其中的一个数据源, 在利用前面"SQL实现表关联"那节的知识来关联显示姓名、性别、备注。
+						<br/>
+						在此之前需要先将前面的举例1保存为"SQL分组查询", 别的名称也可以, 只要与SQL中对应就可。
+						<div class="SQL">
+							select a.*, b.考试批次, b.次数
+							<br/>
+							from 学员表 as a, SQL分组查询 as b
+							<br/>
+							where a.学号 = b.学号;
+						</div>
+						效果如下图12_2:
+						<div class="class___image">
+							<img src="./refs/0012/imgs/SQL_query_group_by_table_relation_by_equal.png"/>
+							<div>图12_2</div>
+						</div>
+						第二行中的 <span class="SQL">SQL分组查询 as b</span> 把举例1创建的查询作为数据源使用, 在此和原本的数据表没区别。
+					</div>
 				</div>
 			</section>
 		</article>

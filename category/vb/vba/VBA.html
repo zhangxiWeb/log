@@ -273,9 +273,84 @@
 			<section>
 				<h3>异常捕获</h3>
 				<div>
+					On Error GoTo 0
+					<br/>
+					默认异常处理，不写就默认是用这个
+					<br/>
+					例如:
+					<div class="class___code">
+						Sub&nbsp;test1()<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;On&nbsp;Error&nbsp;GoTo&nbsp;0<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;1&nbsp;/&nbsp;0<br/>
+						End&nbsp;Sub<br/>
+					</div>
+					和
+					<div class="class___code">
+						Sub&nbsp;test2()<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;1&nbsp;/&nbsp;0<br/>
+						End&nbsp;Sub<br/>
+					</div>
+					一样。
+					<br/>
+					<br/>
 					On Error Resume Next
 					<br/>
 					遇到错误继续执行下一步
+					<br/>
+					例如:
+					<div class="class___code">
+						Sub&nbsp;test3()<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;On&nbsp;Error&nbsp;Resume&nbsp;Next<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;1&nbsp;/&nbsp;0<br/>
+						End&nbsp;Sub<br/>
+					</div>
+					<br/>
+					<br/>
+					On Error GoTo 标签
+					<br/>
+					遇到错误跳到指定的标签处执行
+					<br/>
+					例如:
+					<div class="class___code">
+						Sub&nbsp;test4()<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;On&nbsp;Error&nbsp;GoTo&nbsp;show_error<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;1&nbsp;/&nbsp;0<br/>
+						show_error:<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;"1&nbsp;/&nbsp;0&nbsp;error&nbsp;got&nbsp;by&nbsp;On&nbsp;Error&nbsp;GoTo&nbsp;show_error"<br/>
+						End&nbsp;Sub<br/>
+					</div>
+					还可和exit sub联用
+					<div class="class___code">
+						Sub&nbsp;test5()<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;On&nbsp;Error&nbsp;GoTo&nbsp;show_error<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;1&nbsp;/&nbsp;1<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;"no&nbsp;error"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;Exit&nbsp;Sub<br/>
+						show_error:<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;"1&nbsp;/&nbsp;1&nbsp;error&nbsp;got&nbsp;by&nbsp;On&nbsp;Error&nbsp;GoTo&nbsp;show_error"<br/>
+						End&nbsp;Sub<br/>
+					</div>
+					当没有错误时退出当前过程不执行show_error标签处的代码
+					<br/>
+					<br/>
+					Resume 标签
+					<br/>
+					恢复到指定的标签处执行
+					<br/>
+					例如:
+					<div class="class___code">
+						Sub&nbsp;test6()<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;On&nbsp;Error&nbsp;GoTo&nbsp;show_error<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;1&nbsp;/&nbsp;0<br/>
+						resume_label:<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;"finish"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;Exit&nbsp;Sub<br/>
+						show_error:<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;MsgBox&nbsp;"1&nbsp;/&nbsp;1&nbsp;error&nbsp;got&nbsp;by&nbsp;On&nbsp;Error&nbsp;GoTo&nbsp;show_error"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;Resume&nbsp;resume_label<br/>
+						End&nbsp;Sub<br/>
+					</div>
+					先跳到show_error标签处执行遇到Resume resume_label回到该标签处继续执行MsgBox "finish"再执行Exit Sub退出该过程
 				</div>
 			</section>
 			<section>
@@ -372,6 +447,26 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;SetCursorPos&nbsp;x,&nbsp;y<br/>
 					&nbsp;&nbsp;&nbsp;&nbsp;clik&nbsp;"LEFT"<br/>
 					End&nbsp;Sub<br/>
+				</div>
+			</section>
+			<section>
+				<h3>Excel中使用JavaScript的方法</h3>
+				<div>
+					参考截图:
+					<br/>
+					<img src="./refs/vba/imgs/Excel中使用JavaScript的方法.png">
+				</div>
+			</section>
+			<section>
+				<h3>延时</h3>
+				<div>
+					参考截图:
+					<br/>
+					<img src="./refs/vba/imgs/VBA使用Sleep_API暂停函数实现延时获取数据.png">
+					<br/>
+					<img src="./refs/vba/imgs/VBA延时的三个方法.png">
+					<br/>
+					<img src="./refs/vba/imgs/VBA使用Application_Wait实现延时获取数据.png">
 				</div>
 			</section>
 		</article>

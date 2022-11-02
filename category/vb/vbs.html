@@ -57,32 +57,13 @@
 				width : calc(100% - 6px);
 				margin-top : 10px;
 			}
+			div > a + img {
+				display : none;
+			}
+			div:hover > a + img {
+				display : block;
+			}
 		</style>
-		<script>
-			convert_code_to_html = () => {
-				let source = document.getElementById('id___textarea___input_source_code');
-				let target = document.getElementById('id___textarea___output_html_code');
-				let s = source.value;
-				//console.log(s);
-				s = s.trim();
-				s = s.replace(/\r/g, '');
-				s = s.replace(/&/g, '&amp;');
-				s = s.replace(/ /g, '&nbsp;');
-				s = s.replace(/>/g, '&gt;');
-				s = s.replace(/</g, '&lt;');
-				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
-				s = s.replace(/\n/g, '<br/>\n');
-				s = s.replace(/\n/g, '\n\t');
-				s += '<br/>';
-				//console.log(s);
-				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
-			}
-			window.onload = (e) => {
-				let button = document.getElementById('id___button___convert_code_to_html');
-				//console.log(button);
-				button.addEventListener('click', convert_code_to_html, false);
-			}
-		</script>
 	</head>
 	<body>
 		<article>
@@ -128,17 +109,28 @@
 			<section>
 				<h2>VBScript Language Reference</h2>
 				<a target="_blank" href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/scripting-articles/d1wf56tt(v=vs.84)">Microsoft VBScript Language Reference</a>
+				<br/>
+				<a target="_blank" href="https://learn.microsoft.com/en-us/office/vba/Language/Reference/User-Interface-Help/sendkeys-statement">SendKeys statement (VBA) | Microsoft Learn</a>
 			</section>
 			<section>
 				<h3>SendKey模拟键盘</h3>
 				<div>
-					参考截图:
-					<br/>
-					<img src="./refs/vbs/imgs/vbs_SendKey用法Sendkey键盘对应的码表.png">
-					<br/>
-					<img src="./refs/vbs/imgs/vbs模拟键盘和鼠标输入.png">
-					<br/>
-					<img src="./refs/vbs/imgs/Vbs脚本编程简明教程之九—妙用SendKeys简化重复操作.png">
+					<div>
+						<a target="_blank" href="https://www.cnblogs.com/caimuqing/p/5795614.html">VBS自动按键大全，vbs基本和特殊按键 - 笨蛋敏 - 博客园</a>
+						<img src="./refs/vbs/imgs/VBS自动按键大全_基本和特殊按键.png"/>
+					</div>
+					<div>
+						<a target="_blank" onclick="javascript:void(0);">vbs_SendKey用法Sendkey键盘对应的码表</a>
+						<img src="./refs/vbs/imgs/vbs_SendKey用法Sendkey键盘对应的码表.png"/>
+					</div>
+					<div>
+						<a target="_blank" onclick="javascript:void(0);">vbs模拟键盘和鼠标输入</a>
+						<img src="./refs/vbs/imgs/vbs模拟键盘和鼠标输入.png"/>
+					</div>
+					<div>
+						<a target="_blank" onclick="javascript:void(0);">Vbs脚本编程简明教程之九—妙用SendKeys简化重复操作</a>
+						<img src="./refs/vbs/imgs/Vbs脚本编程简明教程之九—妙用SendKeys简化重复操作.png"/>
+					</div>
 				</div>
 			</section>
 		</article>

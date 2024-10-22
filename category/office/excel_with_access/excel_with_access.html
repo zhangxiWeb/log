@@ -209,7 +209,7 @@
 								c_data,
 								menu_click_history : this.menu_click_history,
 							};
-							
+
 						}
 					};
 					for (let i = 0, l = menu_page_share.menu_dom_array.length; i < l; i++) {
@@ -510,6 +510,50 @@
 						<a target="_blank" href="./refs/access练习/原.xlsx">原.xlsx</a>
 						<br/>
 						<a target="_blank" href="./refs/access练习/查询库.accdb">查询库.accdb</a>
+						<br/>
+						<br/>
+						对于导入后数据条数不一致的补充说明:
+						<br/>
+						先说明一些定位操作:
+						<br/>
+						有内容的首行 : ctrl键 + home键
+						<br/>
+						有内容的尾行尾列 : ctrl键 + end键
+						<br/>
+						选择全部内容 : ctrl键 + shift键 + end键
+						<br/>
+						按条件定位 : ctrl键 + g键, 然后再点击"定位条件"根据需求自行选定即可
+						<br/>
+						连续(非空行、非空列)内容的首行 : ctrl键 + &uparrow;键
+						<br/>
+						连续(非空行、非空列)内容的尾行 : ctrl键 + &downarrow;键
+						<br/>
+						连续(非空行、非空列)内容的首列 : ctrl键 + &leftarrow;键
+						<br/>
+						连续(非空行、非空列)内容的尾列 : ctrl键 + &rightarrow;键
+
+						<br/>
+						<br/>
+						ctrl键 + &downarrow;键 与 ctrl键 + end键 的区别 :
+						<br/>
+						例如A列有1到10行每行有文字, 第11行往下都没有文字, 但在第20行即 A20 单元格设置了边框(设置任意格式或有空格等都包括内)
+						<br/>
+						ctrl键 + &downarrow;键 为定位到 A10 单元格
+						<br/>
+						ctrl键 + end键 为定位到 A20 单元格
+						<br/>
+						<br/>
+						这对导出到 Access 时有影响, 导出到 Access 时是按 ctrl键 + end键 方式导出的数据, 导致导出数据变多, 其中包含了许多空行记录
+						<br/>
+						对此的解决办法是:
+						<br/>
+						1.先选中要保留内容的首列然后按 ctrl键 + &downarrow;键, 然后点 &downarrow;键 选中下面那个格子。
+						<br/>
+						2.按 ctrl键 + shift键 + end键, 此时选中了全部要删除的行。
+						<br/>
+						3.右键在弹出的菜单中选择删除或点击窗口上侧"开始"工具栏中的"删除"按钮, 不要按 delete 键来删除, 因为 delete 无法删除单元格的格式。
+						<br/>
+						4.参照前3步的方式删除多余的列。
 					</div>
 				</div>
 				<div>
@@ -639,7 +683,7 @@
 					<div>
 						<span class="class___tab"></span>将多个表符合条件的记录关联显示
 						<br/>
-						<span class="class___tab"></span>举例:将"学员表"中的'姓名'、'性别'、'备注'信息显示到"成绩表"中对应的记录上, 通过'学号'来关联, 
+						<span class="class___tab"></span>举例:将"学员表"中的'姓名'、'性别'、'备注'信息显示到"成绩表"中对应的记录上, 通过'学号'来关联,
 						数据表参考左侧目录中的"<span class="class___click_menu_index" data-click_menu_index="1">导入表</span>"中导入的数据, 效果如下图5_1:
 						<div class="class___image">
 							<img src="./refs/0005/imgs/save_query.png"/>
@@ -681,21 +725,66 @@
 							<img src="./refs/0005/imgs/query_design_set_column_show_all.png"/>
 							<div>图5_8</div>
 						</div>
-						选择上部工具栏中的"设计"-&gt;"运行", 来查看查询结果, 如下图5_9:
+						右键点击“查询1”标签, 然后选择"SQL视图"
 						<div class="class___image">
-							<img src="./refs/0005/imgs/run_button.png"/>
+							<img src="./refs/0006/imgs/right_button_menu_sql.png">
 							<div>图5_9</div>
 						</div>
-						此时显示查询结果, 下面将查询保存, 用鼠标右键"查询1", 弹出菜单, 如下图5_10:
+						出现如下文字
+						<div style="background-color: black; color : wheat;">
+							SELECT 学员表.*, 成绩表.*
+							<br>
+							FROM <span style="background-color: yellowgreen; color : blue;">成绩表 INNER JOIN 学员表</span> ON (成绩表.学号 = 学员表.学号) AND (成绩表.学号 = 学员表.学号);
+							<br>
+						</div>
+						将其中的 INNER 改为 left , 如下:
+						<div style="background-color: black; color : wheat;">
+							SELECT 学员表.*, 成绩表.*
+							<br>
+							FROM <span style="background-color: yellowgreen; color : blue;">学员表 left JOIN 成绩表</span> ON (成绩表.学号 = 学员表.学号) AND (成绩表.学号 = 学员表.学号);
+						</div>
+						选择上部工具栏中的"设计"-&gt;"运行", 来查看查询结果, 如下图5_10:
+						<div class="class___image">
+							<img src="./refs/0005/imgs/run_button.png"/>
+							<div>图5_10</div>
+						</div>
+						此时显示查询结果, 下面将查询保存, 用鼠标右键"查询1", 弹出菜单, 如下图5_11:
 						<div class="class___image">
 							<img src="./refs/0005/imgs/query_design_show_result.png"/>
-							<div>图5_10</div>
+							<div>图5_11</div>
 						</div>
 						选择"保存"按钮, 然后会弹出一个弹窗用来输入查询的名称, 这里取名为"表关联查询", 效果如下图5_1:
 						<div class="class___image">
 							<img src="./refs/0005/imgs/save_query.png"/>
 							<div>图5_1</div>
 						</div>
+						现在来说明一下刚才改的文字
+						<table>
+							<thead>
+								<tr>
+									<td>方式</td>
+									<td>举例</td>
+									<td>说明</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>左连接 left join</td>
+									<td>学员表 left JOIN 成绩表</td>
+									<td>学员表中的每条记录按学号字段匹配成绩表中的记录，无论在成绩表中是否找到对应的记录，注意若右侧的成绩表中学号字段的值不重复则查询结果总条数同学员表的记录数，若侧的成绩表中学号字段的值有重复的则会导致学员表中对应的记录重复出现但关联的成绩表中内容不重复, 如上图5_1中学号为5或8的记录</td>
+								</tr>
+								<tr>
+									<td>右连接 left join</td>
+									<td>学员表 right JOIN 成绩表</td>
+									<td>成绩表中的每条记录按学号字段匹配学员表中的记录，无论在学员表中是否找到对应的记录，相当于把左连接反过来</td>
+								</tr>
+								<tr>
+									<td>内连接 inner join</td>
+									<td>学员表 inner JOIN 成绩表</td>
+									<td>按学号字段两个表都匹配上的记录</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 				<div>
@@ -761,7 +850,7 @@
 						</div>
 						现结合本例说明其含义。
 						<br/>
-						第一行开头是一个关键字(SQL中预留的单词, 具有特定的用途, 且关键字不区分大小写) <span class="SQL">SELECT</span> , 这个 <span class="SQL">select</span> 表明这是一个查询语句, 
+						第一行开头是一个关键字(SQL中预留的单词, 具有特定的用途, 且关键字不区分大小写) <span class="SQL">SELECT</span> , 这个 <span class="SQL">select</span> 表明这是一个查询语句,
 						在这之后是一个空格, 以分开后面的文本, 再之后是 <span class="SQL">学员表.*</span> 说明要显示哪些列, <span class="SQL">*</span> 表示全部的列, <span class="SQL">学员表.*</span> 表示成绩表中的全部列,
 						<br/>
 						第二行开头是一个关键字 <span class="SQL">FROM</span> 跟一个空格, 用于标识结束前面的列名并开始后面的数据来源列表, 然后是 <span class="SQL">学员表</span> , 表明数据来源是 学员表
@@ -838,7 +927,7 @@
 							<img src="./refs/0007/imgs/SQL_query_like_any.png"/>
 							<div>图7_1</div>
 						</div>
-						第一行的 <span class="SQL">学号, 姓名 AS 姓王的</span> 是要显示的列的列表, 用英文状态下的逗号分隔, 
+						第一行的 <span class="SQL">学号, 姓名 AS 姓王的</span> 是要显示的列的列表, 用英文状态下的逗号分隔,
 						<br/>
 						其中的 <span class="SQL">姓名 AS 姓王的</span> 表示显示 姓名 这列的信息, 但在显示时给 姓名 换了个别称, 这样该列的标题显示为 姓王的 , 这里的 <span class="SQL">AS</span> 是个关键字用于标识后面是别称。
 						<br/>
@@ -993,24 +1082,25 @@
 					<h3>SQL实现表关联</h3>
 					<div>
 						<span class="class___tab"></span>用SQL重新实现前面的表关联, 将多个表符合条件的记录关联显示
-						<br/>
+						<br>
 						<span class="class___tab"></span>举例:将"学员表"中的'姓名'、'性别'、'备注'信息显示到"成绩表"中对应的记录上, 通过'学号'来关联。
 						<div class="SQL">
-							SELECT b.姓名, b.性别, b.备注, a.*
-							<br/>
-							FROM 成绩表 as a, 学员表 as b
-							<br/>
-							where a.学号 = b.学号
+							SELECT a.姓名, a.性别, a.备注, b.*
+							<br>
+							FROM 成绩表 as b right JOIN 学员表 as a ON b.学号 = a.学号;
 						</div>
 						效果如下图10_1:
 						<div class="class___image">
-							<img src="./refs/0010/imgs/SQL_query_table_relation_by_equal.png"/>
+							<img src="Excel%20with%20Access_files/save_query.png">
 							<div>图10_1</div>
 						</div>
-						第一行的每个要显示的列前面有一个字母和一个点, 这个字母是表的别名, 点分隔表名与列名, 表名可以用别名是为了可以少写几个字, <span class="SQL"></span>b.姓名</span> 表示 学员表 下的 姓名 这列。
-						<br/>
-						第二行的 <span class="SQL">成绩表 as a</span>, 是给 成绩表 起一个别名为 a, 这样在别的部分可以用 a 代替 成绩表, 可以少写许多字。
-						第三行的 <span class="SQL">a.学号 = b.学号</span> 与第一行的情况相同, 表名别称跟点再跟列名, 即 成绩表 下的 学号 与 学员表 下的 学号 相同的记录。
+						第一行的每个要显示的列前面有一个字母和一个点, 这个字母是表的别名, 点分隔表名与列名, 表名可以用别名是为了可以少写几个字, <span class="SQL"></span>b.姓名 表示 学员表 下的 姓名 这列。
+						<br>
+						第二行的 <span class="SQL">成绩表 as b</span>, 是给 成绩表 起一个别名为 b, 这样在别的部分可以用 b 代替 成绩表, 可以少写许多字。
+						<br>
+						第二行的 <span class="SQL">成绩表 as b right JOIN 学员表 as a</span> 除去起别名相当于 "成绩表 right JOIN 学员表"，即 成绩表 右连接 右侧的 学员表，这样 学员表 中的每条记录都会显示并同时显示 成绩表 中对应的字段内容。
+						<br>
+						第二行的 <span class="SQL">a.学号 = b.学号</span> 为匹配的条件, 表名别称与第一行的情况相同, 即 学员表 下的 学号 与 成绩表 下的 学号 相同的记录。
 					</div>
 				</div>
 				<div>
@@ -1041,7 +1131,7 @@
 						<br/>
 						<span class="class___tab"></span>举例1:查询参加过考试的学员每个考试批次考了几次。
 						<div class="SQL">
-							SELECT 学号, 考试批次, count(1) as 次数, 
+							SELECT 学号, 考试批次, count(1) as 次数,
 							<br/>
 							FROM 成绩表
 							<br/>

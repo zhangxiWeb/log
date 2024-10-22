@@ -81,6 +81,59 @@
 					<img src="./refs/imgs/excel___hang_indent/excel_chose_paste_panel__word.png"/>
 				</div>
 			</section>
+			<section>
+				<h2>VLOOKUP</h2>
+				<div>
+					=VLOOKUP(搜索的格子, 原数据表的列, 第几列, 找不到时的提示文字)
+					<br/>
+					<img src="./refs/imgs/vlookup_0001.png"/>
+					<br/>
+					<img src="./refs/imgs/vlookup_0002.png"/>
+				</div>
+			</section>
+			<section>
+				<h2>定位</h2>
+				<div>
+					有内容的首行 : ctrl键 + home键
+					<br/>
+					有内容的尾行尾列 : ctrl键 + end键
+					<br/>
+					选择全部内容 : ctrl键 + shift键 + end键
+					<br/>
+					按条件定位 : ctrl键 + g键, 然后再点击"定位条件"根据需求自行选定即可
+					<br/>
+					连续(非空行、非空列)内容的首行 : ctrl键 + &uparrow;键
+					<br/>
+					连续(非空行、非空列)内容的尾行 : ctrl键 + &downarrow;键
+					<br/>
+					连续(非空行、非空列)内容的首列 : ctrl键 + &leftarrow;键
+					<br/>
+					连续(非空行、非空列)内容的尾列 : ctrl键 + &rightarrow;键
+
+					<br/>
+					<br/>
+					ctrl键 + &downarrow;键 与 ctrl键 + end键 的区别 :
+					<br/>
+					例如A列有1到10行每行有文字, 第11行往下都没有文字, 但在第20行即 A20 单元格设置了边框(设置任意格式或有空格等都包括内)
+					<br/>
+					ctrl键 + &downarrow;键 为定位到 A10 单元格
+					<br/>
+					ctrl键 + end键 为定位到 A20 单元格
+					<br/>
+					<br/>
+					这对导出到 Access 时有影响, 导出到 Access 时是按 ctrl键 + end键 方式导出的数据, 导致导出数据变多, 其中包含了许多空行记录
+					<br/>
+					对此的解决办法是:
+					<br/>
+					1.先选中要保留内容的首列然后按 ctrl键 + &downarrow;键, 然后点 &downarrow;键 选中下面那个格子。
+					<br/>
+					2.按 ctrl键 + shift键 + end键, 此时选中了全部要删除的行。
+					<br/>
+					3.右键在弹出的菜单中选择删除或点击窗口上侧"开始"工具栏中的"删除"按钮, 不要按 delete 键来删除, 因为 delete 无法删除单元格的格式。
+					<br/>
+					4.参照前3步的方式删除多余的列。
+				</div>
+			</section>
 		</article>
 	</body>
 </html>
